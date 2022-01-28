@@ -11,17 +11,19 @@ comp_choice = ""
 
 def choice_to_number(choice):
     rps = {'rock' :0, 'paper': 1,'scissor':2}
+    return rps[choice]
 
 def number_to_choice(number):
     rps = {0 : 'rock', 1 : 'paper', 2 : 'scissor'}
+    return rps[number]
 
 def random_computer_choice():
     return random.choice(["rock", "paper", "scissor"])
 
-def result (user_choice, comp_choice):
+def result (human_choice, comp_choice):
     global user_score
     global comp_score
-    user = choice_to_number(user_choice)
+    user = choice_to_number(human_choice)
     comp = choice_to_number(comp_choice)
     if (user == comp): #condition for tie
         print("Tie")
@@ -33,7 +35,7 @@ def result (user_choice, comp_choice):
         comp_score += 1
     text_area = Text(master = rps, font = ("arial", 15,"italic bold"), relief = RIDGE, bg = "#033642", fg = "white", width = 26)
     text_area.grid(column = 0, row = 4)
-    answer = "You Choice: {uc} \n Computer's Choice {cc} \n Your Score: {u} \n Computer Score: {c} ", format(uc = user_choice,
+    answer = "You Choice: {uc} \n Computer's Choice {cc} \n Your Score: {u} \n Computer Score: {c} ".format(uc = user_choice,
     cc = comp_choice, u = user_score, c = comp_score)
     text_area.insert(END,answer)
 
@@ -60,9 +62,11 @@ def scissor():
     result(user_choice,comp_choice)
 # First we will create label and button 
 
-button_rock = Button(text="_____ROCK_____", bg = "#808487", font = ("arial", 15,"italic bold"), relief = RIDGE, activebackground = "#05935B", activeforeground = "white", width = 24)
+button_rock = Button(text="ROCK", bg = "#CFC", font = ("arial", 15,"italic bold"), relief = RIDGE, activebackground = "#05935B", activeforeground = "white", width = 24, command = rock)
 button_rock.grid(column = 0, row = 1)
-button_paper = Button(text="_____PAPER_____", bg = "#808487", font = ("arial", 15,"italic bold"), relief = RIDGE, activebackground = "#05935B", activeforeground = "white", width = 24)
+button_paper = Button(text="PAPER", bg = "#CFF", font = ("arial", 15,"italic bold"), relief = RIDGE, activebackground = "#05935B", activeforeground = "white", width = 24, command = paper)
 button_paper.grid(column = 0, row = 2)
-button_scissor = Button(text="_____SCISSOR_____", bg = "#808487", font = ("arial", 15,"italic bold"), relief = RIDGE, activebackground = "#05935B", activeforeground = "white", width = 24)
+button_scissor = Button(text="SCISSOR", bg = "#CCF", font = ("arial", 15,"italic bold"), relief = RIDGE, activebackground = "#05935B", activeforeground = "white", width = 24, command = scissor)
 button_scissor.grid(column = 0, row = 3)
+
+rps.mainloop()
